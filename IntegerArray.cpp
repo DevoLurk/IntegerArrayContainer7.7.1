@@ -5,7 +5,7 @@ IntegerArray::IntegerArray() = default;
 IntegerArray::IntegerArray(int length)
 {
 	if (length > maxSize)
-		return; // EX
+		throw bad_length();
 
 	arrSize = length;
 	array = new int[length];
@@ -13,7 +13,7 @@ IntegerArray::IntegerArray(int length)
 
 IntegerArray::IntegerArray(const IntegerArray& arr)
 {
-	//reallocate(arr.);
+	reallocate(arr.getLength());
 
 	for (int i = 0; i < arrSize; i++)
 		array[i] = arr.array[i];
@@ -30,10 +30,10 @@ void IntegerArray::setSize(int size)
 		return;
 
 	if (size > maxSize)
-		return; // EX
+		throw bad_range();
 
 	if (size < 0)
-		return; // EX
+		throw bad_length(); 
 
 	if (size == 0)
 		erase();
@@ -55,14 +55,14 @@ void IntegerArray::setSize(int size)
 
 void IntegerArray::insertInto(int index, long long num)
 {
-	if ((index <= 0) && (index > arrSize))
-		return; // EX
+	if ((index < 0) || (index > arrSize))
+		throw bad_length();
 
 	if (arrSize + 1 == maxSize)
-		return; // EX
+		throw bad_range();
 
 	if ((num < minNum) || (num > maxNum))
-		return; // EX
+		throw bad_num();
 
 	int* arrCopy = new int[arrSize + 1];
 
@@ -71,7 +71,7 @@ void IntegerArray::insertInto(int index, long long num)
 
 	arrCopy[index] = num;
 
-	for (int i = index; i < arrSize; i++)
+	for (int i = index; i <= arrSize; i++)
 		arrCopy[i + 1] = array[i];
 
 	delete[] array;
@@ -81,12 +81,12 @@ void IntegerArray::insertInto(int index, long long num)
 
 void IntegerArray::deleteFrom(int index)
 {
-	if ((index <= 0) && (index < arrSize))
-		return; // EX
+	if ((index < 0) || (index >= arrSize))
+		throw bad_range();
 
 	if (arrSize == 1)
 	{
-		setSize(0);
+		reallocate(0);
 		return;
 	}
 
@@ -106,7 +106,7 @@ void IntegerArray::deleteFrom(int index)
 void IntegerArray::insertAtBeginning(long long num)
 {
 	if ((num < minNum) || (num > maxNum))
-		return; // EX
+		throw bad_num();
 
 	IntegerArray::insertInto(0, num);
 }
@@ -114,7 +114,7 @@ void IntegerArray::insertAtBeginning(long long num)
 void IntegerArray::insertAtEnd(long long num)
 {
 	if ((num < minNum) || (num > maxNum))
-		return; // EX
+		throw bad_num();
 
 	IntegerArray::insertInto(arrSize, num);
 }
@@ -122,10 +122,10 @@ void IntegerArray::insertAtEnd(long long num)
 void IntegerArray::randomFill(int min, int max)
 {
 	if ((min < minNum) || (min > maxNum))
-		return; // EX
+		throw bad_num();
 
 	if ((max < minNum) || (max > maxNum))
-		return; // EX
+		throw bad_num();
 
 	for (int i = 0; i < arrSize; i++)
 		array[i] = random(min, max);
@@ -138,7 +138,7 @@ void IntegerArray::print(int num)
 		if (i % num == 0)
 			printf("\n");
 
-		printf(" %8d, ", array[i]);
+		printf(" %+8d, ", array[i]);
 	}
 
 	printf("\b\b \n");
@@ -147,10 +147,10 @@ void IntegerArray::print(int num)
 int IntegerArray::getElement(int index)
 {
 	if (!arrSize)
-		return 2;    // EX
+		throw bad_length();
 
 	if (index >= arrSize)
-		return 1;    // EX
+		throw bad_range();
 
     return array[index];
 }
@@ -158,7 +158,7 @@ int IntegerArray::getElement(int index)
 bool IntegerArray::getIndexOf(long long num, int &index)
 {
 	if ((num < minNum) || (num > maxNum))
-		return false; // EX
+		throw bad_num();
 
 	bool flag = false;
 
@@ -174,7 +174,7 @@ bool IntegerArray::getIndexOf(long long num, int &index)
 	return flag;
 }
 
-int IntegerArray::getLength()
+int IntegerArray::getLength() const
 {
 	return arrSize;
 }
@@ -193,12 +193,20 @@ IntegerArray& IntegerArray::operator=(const IntegerArray& arr)
 	if (&arr == this)
 		return *this;
 
-	//////////////////////reallocate();
+	reallocate(arr.getLength());
 
 	for (int i = 0; i < arrSize; i++)
 		array[i] = arr.array[i];
 
 	return *this;
+}
+
+int& IntegerArray::operator[](int index)
+{
+	if ((index <= 0) || (index >= arrSize))
+		throw bad_length();
+
+	return array[index];
 }
 
 void IntegerArray::erase()

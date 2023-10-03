@@ -4,6 +4,7 @@
 #include<iostream>
 #include<random>
 #include<stdlib.h>
+#include"myexception.h"
 
 class IntegerArray
 {
@@ -30,13 +31,14 @@ public:
     void deleteFrom(int index);                            // удалить элемент по индексу
     void insertAtBeginning(long long num);                 // вставить элемент в начало
     void insertAtEnd(long long num);                       // вставить элемент в конец
-    void randomFill(int min = -10000, int max = 10000);    // заполнение случайными значениями в диапазоне
+    void randomFill(int min = -100000, int max = 100000);  // заполнение случайными значениями в диапазоне
     void print(int num = 10);                              // печать . перенос строки каждые 25 символов
     int getElement(int index);                             // возвращает элемент по индексу
-    int getLength();                                       // возвращает длинну массива
+    int getLength() const;                                 // возвращает длинну массива
     bool getIndexOf(long long num, int &index);            // возвращает индекс искомого элемента или false
 
     IntegerArray& operator=(const IntegerArray& arr);
+    int& operator[](int index);
 };
 
 #endif // INTEGERARRAY

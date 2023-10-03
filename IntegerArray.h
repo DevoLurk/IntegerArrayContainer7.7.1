@@ -14,28 +14,28 @@ private:
 
     const int maxNum = 2147483647;                  
     const int minNum = -2147483648;
-    const int maxSize = 268435456;                        // 1 Gigabyte 
+    const int maxSize = 268435456;                        // 1 Gigabite 
 
-    int random(int min, int max);                         // случайное значение в диапазоне
-    void erase();                                         // стирает все
-    void reallocate(int size);                            // новый размер без сохранения элементов
+    int random(int min, int max);                         // СЃР»СѓС‡Р°Р№РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґРёР°РїР°Р·РѕРЅРµ
+    void erase();                                         // СЃС‚РёСЂР°РµС‚ РІСЃРµ
+    void reallocate(int size);                            // РЅРѕРІС‹Р№ СЂР°Р·РјРµСЂ Р±РµР· СЃРѕС…СЂР°РЅРµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ
 
 public:
     IntegerArray();                                 
-    IntegerArray(int length);                             // создание массива заданной длинны 
-    IntegerArray(const IntegerArray& arr);                // копирование массива
+    IntegerArray(int length);                             // СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° Р·Р°РґР°РЅРЅРѕР№ РґР»РёРЅРЅС‹ 
+    IntegerArray(const IntegerArray& arr);                // РєРѕРїРёСЂРѕРІР°РЅРёРµ РјР°СЃСЃРёРІР°
     ~IntegerArray();
 
-    void setSize(int size);                                // изменить размер контейнера на заданный с сохранением элементов
-    void insertInto(int index, long long num);             // добавить новый элемент на заданную позицию 
-    void deleteFrom(int index);                            // удалить элемент по индексу
-    void insertAtBeginning(long long num);                 // вставить элемент в начало
-    void insertAtEnd(long long num);                       // вставить элемент в конец
-    void randomFill(int min = -100000, int max = 100000);  // заполнение случайными значениями в диапазоне
-    void print(int num = 10);                              // печать . перенос строки каждые 25 символов
-    int getElement(int index);                             // возвращает элемент по индексу
-    int getLength() const;                                 // возвращает длинну массива
-    bool getIndexOf(long long num, int &index);            // возвращает индекс искомого элемента или false
+    void setSize(int size);                                // РёР·РјРµРЅРёС‚СЊ СЂР°Р·РјРµСЂ РєРѕРЅС‚РµР№РЅРµСЂР° РЅР° Р·Р°РґР°РЅРЅС‹Р№ СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј СЌР»РµРјРµРЅС‚РѕРІ
+    void insertInto(int index, long long num);             // РґРѕР±Р°РІРёС‚СЊ РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РЅР° Р·Р°РґР°РЅРЅСѓСЋ РїРѕР·РёС†РёСЋ 
+    void deleteFrom(int index);                            // СѓРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ РїРѕ РёРЅРґРµРєСЃСѓ
+    void insertAtBeginning(long long num);                 // РІСЃС‚Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РЅР°С‡Р°Р»Рѕ
+    void insertAtEnd(long long num);                       // РІСЃС‚Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС†
+    void randomFill(int min = -100000, int max = 100000);  // Р·Р°РїРѕР»РЅРµРЅРёРµ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё РІ РґРёР°РїР°Р·РѕРЅРµ
+    void print(int num = 10);                              // РїРµС‡Р°С‚СЊ . РїРµСЂРµРЅРѕСЃ СЃС‚СЂРѕРєРё РєР°Р¶РґС‹Рµ 25 СЃРёРјРІРѕР»РѕРІ
+    int getElement(int index);                             // РІРѕР·РІСЂР°С‰Р°РµС‚ СЌР»РµРјРµРЅС‚ РїРѕ РёРЅРґРµРєСЃСѓ
+    int getLength() const;                                 // РІРѕР·РІСЂР°С‰Р°РµС‚ РґР»РёРЅРЅСѓ РјР°СЃСЃРёРІР°
+    bool getIndexOf(long long num, int &index);            // РІРѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ РёСЃРєРѕРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РёР»Рё false
 
     IntegerArray& operator=(const IntegerArray& arr);
     int& operator[](int index);

@@ -3,7 +3,7 @@
 
 #include <exception>
 
-class bad_range : public std::exception                       // выход за пределы массива
+class bad_range : public std::exception                       // РІС‹С…РѕРґ Р·Р° РїСЂРµРґРµР»С‹ РјР°СЃСЃРёРІР°
 {
 public:
 	virtual const char* what() const noexcept override
@@ -12,7 +12,7 @@ public:
 	}
 };
 
-class bad_length : public std::exception                      // недопустимая длинна массива
+class bad_length : public std::exception                      // РЅРµРґРѕРїСѓСЃС‚РёРјР°СЏ РґР»РёРЅРЅР° РјР°СЃСЃРёРІР°
 {
 public:
 	virtual const char* what() const noexcept override
@@ -21,7 +21,7 @@ public:
 	}
 };
 
-class bad_num : public std::exception                          // выход за пределы значений типа int
+class bad_num : public std::exception                          // РІС‹С…РѕРґ Р·Р° РїСЂРµРґРµР»С‹ Р·РЅР°С‡РµРЅРёР№ С‚РёРїР° int
 {
 public:
 	virtual const char* what() const noexcept override

@@ -14,7 +14,7 @@ private:
 
     const int maxNum = 2147483647;                  
     const int minNum = -2147483648;
-    const int maxSize = 268435456;                        // 1 Gigabite 
+    const int maxSize = 268435456;                        // 1 Gigabyte 
 
     int random(int min, int max);                         // случайное значение в диапазоне
     void erase();                                         // стирает все

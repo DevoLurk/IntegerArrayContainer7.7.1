@@ -203,7 +203,7 @@ IntegerArray& IntegerArray::operator=(const IntegerArray& arr)
 
 int& IntegerArray::operator[](int index)
 {
-	if ((index <= 0) || (index >= arrSize))
+	if ((index < 0) || (index >= arrSize))
 		throw bad_length();
 
 	return array[index];
